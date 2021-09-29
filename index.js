@@ -2,6 +2,7 @@ const express= require("express");
 const app=express();
 const http = require("http").Server(app);
 const io = require('socket.io')(http);
+const port=process.env.PORT || 3000
 const path=require('path');
 const users = {};
 
@@ -20,4 +21,4 @@ socket.on("send",(message)=>{
 });
 });
 
-http.listen(3000, () => { console.log("listening") });
+http.listen(port, () => { console.log("listening") });
