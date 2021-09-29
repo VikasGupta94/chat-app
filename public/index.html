@@ -29,7 +29,7 @@
         let msgcontainer = document.getElementById("msg");
         let msgval = document.getElementById("inputval");
         let submitbtn = document.getElementById("submit");
-
+let audio=new Audio('H42VWCD-notification.mp3');
         //=======submit function ===
         submitbtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -46,13 +46,22 @@
 //===================================
         let newuser = prompt("user");
         socket.emit('new-user-join', newuser);
-
+socket.on("user-joind",(name)=>{
+    let datalement = document.createElement('div');
+            datalement.innerHTML =`${name} joined the chat `;
+            datalement.setAttribute('class', 'msgbox');
+            datalement.classList.add('left');
+            datalement.style='background-color: #ffeb00; color:black';
+            msgcontainer.appendChild(datalement);
+            audio.play();
+})
         socket.on('recieve', (data) => {
             let datalement = document.createElement('div');
             datalement.innerHTML = `<p style="font-size:13px;color: #73f92e;">${data.name}:</p><p>${data.message}</p>`;
             datalement.setAttribute('class', 'msgbox');
             datalement.classList.add('left');
             msgcontainer.appendChild(datalement);
+            audio.play();
         })
     </script>
 </body>

@@ -3,6 +3,7 @@ const app=express();
 const http = require("http").Server(app);
 const io = require('socket.io')(http);
 const path=require('path');
+const port=process.env.PORT || 3000;
 const users = {};
 
 const staticpath=path.join(__dirname,"/public");
@@ -20,4 +21,4 @@ socket.on("send",(message)=>{
 });
 });
 
-http.listen(3000, () => { console.log("listening") });
+http.listen(port, () => { console.log("listening") });
